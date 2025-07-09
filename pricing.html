@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Pricing - Tanka AI</title>
+    <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --light-text: #f5f5f5;
+            --accent-blue: #3498ff;
+            --secondary-bg: #252525;
+            --hover-blue: #2980ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Manrope', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(26, 26, 26, 0.95);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            height: 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .active {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--light-text);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .hero {
+            height: 60vh;
+            background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.8)), url('https://freevector-images.s3.amazonaws.com/uploads/vector/preview/130259/vecteezybackground-modern-future-technologyby0622_generated.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 70px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-blue), #60c5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .pricing-container {
+            padding: 5rem 5%;
+        }
+        
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+        
+        .pricing-card .description {
+            margin-bottom: 1.5rem;
+            color: #bbb;
+        }
+        
+        .features {
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .features li {
+            margin-bottom: 0.8rem;
+            list-style: none;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .features li::before {
+            content: \"\\u2713\";
+            color: var(--accent-blue);
+            position: absolute;
+            left: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--hover-blue);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+        
+        .comparison {
+            padding: 5rem 5%;
+        }
+        
+        .comparison h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            max-width: 1000px;
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .comparison-table th {
+            background-color: rgba(52, 152, 255, 0.1);
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .check {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .copyright {
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-bg);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in;
+                z-index: 999;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .pricing-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 0.7rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src=\"https://framerusercontent.com/images/y6vjpYRYQtZK4TMdiMrlp3dmzU.png\" alt=\"Tanka AI Logo\" class=\"logo\">
+        <div class=\"hamburger\">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href=\"#\">Home</a></li>
+                <li><a href=\"#\">About Us</a></li>
+                <li><a href=\"#\">Solutions</a></li>
+                <li><a href=\"#\" class=\"active\">Pricing</a></li>
+                <li><a href=\"#\">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class=\"hero\">
+        <h1>Find the Perfect Plan for Your Team</h1>
+        <p>Start for free, then grow with us. Simple, transparent pricing.</p>
+    </section>
+
+    <section class=\"pricing-container\">
+        <div class=\"pricing-cards\">
+            <div class=\"pricing-card\">
+                <h3>Free</h3>
+                <div class=\"price\">$0<span style=\"font-size: 1rem;\">/user/month</span></div>
+                <p class=\"description\">For individuals and small teams getting started.</p>
+                <ul class=\"features\">
+                    <li>AI-powered chat</li>
+                    <li>Basic long-term memory</li>
+                    <li>1000 message history</li>
+                    <li>Standard support</li>
+                </ul>
+                <a href=\"#\" class=\"btn btn-outline\">Get Started</a>
+            </div>
+            
+            <div class=\"pricing-card\" style=\"border: 2px solid var(--accent-blue);\">
+                <h3>Pro</h3>
+                <div class=\"price\">$15<span style=\"font-size: 1rem;\">/user/month</span></div>
+                <p class=\"description\">For growing teams that need more power and collaboration.</p>
+                <ul class=\"features\">
+                    <li>Everything in Free, plus:</li>
+                    <li>Unlimited message history</li>
+                    <li>Advanced AI memory</li>
+                    <li>Priority support</li>
+                    <li>Integration with 5 apps</li>
+                </ul>
+                <a href=\"#\" class=\"btn\">Choose Pro</a>
+            </div>
+            
+            <div class=\"pricing-card\">
+                <h3>Enterprise</h3>
+                <div class=\"price\">Custom</div>
+                <p class=\"description\">For large organizations with advanced security and support needs.</p>
+                <ul class=\"features\">
+                    <li>Everything in Pro, plus:</li>
+                    <li>Dedicated AI models</li>
+                    <li>SSO & advanced security</li>
+                    <li>24/7 dedicated support</li>
+                    <li>Custom integrations</li>
+                </ul>
+                <a href=\"#\" class=\"btn\">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <section class=\"comparison\">
+        <h2>Feature Comparison</h2>
+        <div class=\"table-container\">
+            <table class=\"comparison-table\">
+                <thead>
+                    <tr>
+                        <th>Features</th>
+                        <th>Free</th>
+                        <th>Pro</th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AI-powered chat</td>
+                        <td><span class=\"check\">\\u2713</span></td>
+                        <td><span class=\"check\">\\u2713</span></td>
+                        <td><span class=\"check\">\\u2713</span></td>
+                    </tr>
+                    <tr>
+                        <td>Long-term memory</td>
+                        <td>Basic</td>
+                        <td>Advanced</td>
+                        <td>Dedicated</td>
+                    </tr>
+                    <tr>
+                        <td>Message History</td>
+                        <td>1,000</td>
+                        <td>Unlimited</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td>Standard</td>
+                        <td>Priority</td>
+                        <td>24/7 Dedicated</td>
+                    </tr>
+                    <tr>
+                        <td>Integrations</td>
+                        <td>None</td>
+                        <td>5 apps</td>
+                        <td>Custom</td>
+                    </tr>
+                    <tr>
+                        <td>Security</td>
+                        <td>Standard</td>
+                        <td>Advanced</td>
+                        <td>Enterprise-grade</td>
+                    </tr>
+                    <tr>
+                        <td>SSO</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class=\"check\">\\u2713</span></td>
+                    </tr>
+                    <tr>
+                        <td>Custom AI Models</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class=\"check\">\\u2713</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class=\"social-links\">
+            <a href=\"#\" aria-label=\"Twitter\">
+                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
+                    <path d=\"M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z\"></path>
+                </svg>
+            </a>
+            <a href=\"#\" aria-label=\"LinkedIn\">
+                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
+                    <path d=\"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z\"></path>
+                    <rect x=\"2\" y=\"9\" width=\"4\" height=\"12\"></rect>
+                    <circle cx=\"4\" cy=\"4\" r=\"2\"></circle>
+                </svg>
+            </a>
+            <a href=\"#\" aria-label=\"GitHub\">
+                <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\">
+                    <path d=\"M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22\"></path>
+                </svg>
+            </a>
+        </div>
+        <div class=\"footer-links\">
+            <a href=\"#\">Privacy Policy</a>
+            <a href=\"#\">Terms of Service</a>
+            <a href=\"#\">Contact Us</a>
+            <a href=\"#\">Careers</a>
+        </div>
+        <p class=\"copyright\">\\u00a9 2025 Tanka AI. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu after clicking a link
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Add animation to pricing cards on scroll
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        pricingCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
