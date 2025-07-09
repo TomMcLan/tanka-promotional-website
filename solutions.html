@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Solutions | Tanka AI</title>
+    <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --accent-blue: #007BFF;
+            --light-text: #f5f5f5;
+            --secondary-text: #b0b0b0;
+            --card-bg: #252525;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url('https://images.vexels.com/content/70625/preview/futuristic-fluorescent-blue-tech-lines-background-eddf0f.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 26, 26, 0.9);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background-color: rgba(26, 26, 26, 0.95);
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+        
+        nav ul li a.active {
+            color: var(--accent-blue);
+        }
+        
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-blue);
+        }
+        
+        .hero {
+            padding: 100px 0 50px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fff, #007BFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--secondary-text);
+        }
+        
+        .offerings {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--light-text);
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 123, 255, 0.3);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-blue);
+        }
+        
+        .use-cases {
+            padding: 80px 0;
+            background-color: rgba(37, 37, 37, 0.7);
+        }
+        
+        .use-case-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .use-case-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--accent-blue);
+        }
+        
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+        }
+        
+        .use-case-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-blue);
+        }
+        
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('https://images.vexels.com/content/70625/preview/futuristic-fluorescent-blue-tech-lines-background-eddf0f.png');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: var(--secondary-text);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+        }
+        
+        footer {
+            background-color: #151515;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            color: var(--secondary-text);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class=\"container header-content\">
+            <div class=\"logo\">
+                <img src=\"https://framerusercontent.com/images/y6vjpYRYQtZK4TMdiMrlp3dmzU.png\" alt=\"Tanka AI Logo\">
+            </div>
+            <button class=\"mobile-menu-btn\">\u2630</button>
+            <nav>
+                <ul id=\"nav-menu\">
+                    <li><a href=\"#\">Home</a></li>
+                    <li><a href=\"#\">About Us</a></li>
+                    <li><a href=\"#\" class=\"active\">Solutions</a></li>
+                    <li><a href=\"#\">Pricing</a></li>
+                    <li><a href=\"#\">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class=\"hero\">
+        <div class=\"container\">
+            <h1>Our Solutions: The Future of Team Collaboration</h1>
+            <p>Tanka is an AI messenger with long-term memory, designed to enhance team collaboration by providing context-aware replies, insights, and proactive suggestions. Experience the next generation of workplace communication.</p>
+        </div>
+    </section>
+
+    <section class=\"offerings\">
+        <div class=\"container\">
+            <h2 class=\"section-title\">Core Offerings</h2>
+            <div class=\"cards\">
+                <div class=\"card\">
+                    <div class=\"card-img\">
+                        <img src=\"https://miro.medium.com/v2/1*FgUNLQ9NPT5GoAT4pG7X0w.png\" alt=\"AI Messenger with Long-Term Memory\">
+                    </div>
+                    <div class=\"card-content\">
+                        <h3>AI Messenger with Long-Term Memory</h3>
+                        <p>Tanka remembers past conversations and context to provide smarter, more relevant responses. Unlike traditional messaging apps, Tanka builds a knowledge base from your team's communications, ensuring no valuable information is lost over time.</p>
+                    </div>
+                </div>
+                
+                <div class=\"card\">
+                    <div class=\"card-img\">
+                        <img src=\"https://agencyanalytics.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fdfcvkz6j859j%2F29703OhptupDFbVBSNjvkB%2Fc8d5ace2a37eb99d919b42da58b9103d%2FCustom-Marketing-Dashboard-Using-Data-Visualization-Examples.png\" alt=\"Proactive & Actionable Insights\">
+                    </div>
+                    <div class=\"card-content\">
+                        <h3>Proactive & Actionable Insights</h3>
+                        <p>Tanka analyzes conversations to summarize to-dos, send reminders, and offer suggestions to keep teams agile and innovative. Our AI identifies patterns and opportunities that humans might miss, turning conversations into actionable intelligence.</p>
+                    </div>
+                </div>
+                
+                <div class=\"card\">
+                    <div class=\"card-img\">
+                        <img src=\"https://media.licdn.com/dms/image/v2/D4D12AQGA2qtbEHxqTg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1734282333572?e=2147483647&v=beta&t=N_hB5B7ug7duT4bJN44_H4APBEVYbCbBrg-Jjad_Bwk\" alt=\"Seamless Team Collaboration\">
+                    </div>
+                    <div class=\"card-content\">
+                        <h3>Seamless Team Collaboration</h3>
+                        <p>Tanka acts as a central knowledge hub, preventing loss of institutional knowledge and ensuring all team members are aligned. New team members can quickly get up to speed, and distributed teams stay connected with shared context and understanding.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class=\"use-cases\">
+        <div class=\"container\">
+            <h2 class=\"section-title\">Use Cases</h2>
+            <div class=\"use-case-cards\">
+                <div class=\"use-case-card\">
+                    <h3>Engineering Teams</h3>
+                    <p>Track bugs, discuss features, and remember project decisions with ease. Tanka helps engineering teams maintain technical context across sprints and projects, reducing the need for repetitive explanations and documentation.</p>
+                </div>
+                
+                <div class=\"use-case-card\">
+                    <h3>Sales & Marketing</h3>
+                    <p>Manage client conversations, recall deal details, and coordinate campaigns seamlessly. Tanka ensures no customer preference or campaign insight is forgotten, helping teams deliver personalized experiences at scale.</p>
+                </div>
+                
+                <div class=\"use-case-card\">
+                    <h3>Executive Leadership</h3>
+                    <p>Access high-level summaries, track team progress, and make informed decisions based on comprehensive data. Tanka provides executives with the context they need without requiring them to sift through endless messages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class=\"cta\">
+        <div class=\"container\">
+            <h2>Ready to Transform Your Team's Collaboration?</h2>
+            <p>Experience the power of AI-enhanced communication with long-term memory and actionable insights.</p>
+            <a href=\"#\" class=\"btn\">Request a Demo</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class=\"container\">
+            <div class=\"footer-content\">
+                <div class=\"footer-column\">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href=\"#\">About Us</a></li>
+                        <li><a href=\"#\">Careers</a></li>
+                        <li><a href=\"#\">Blog</a></li>
+                        <li><a href=\"#\">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class=\"footer-column\">
+                    <h3>Solutions</h3>
+                    <ul>
+                        <li><a href=\"#\">AI Messenger</a></li>
+                        <li><a href=\"#\">Team Collaboration</a></li>
+                        <li><a href=\"#\">Knowledge Management</a></li>
+                        <li><a href=\"#\">Enterprise Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class=\"footer-column\">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href=\"#\">Documentation</a></li>
+                        <li><a href=\"#\">API Reference</a></li>
+                        <li><a href=\"#\">Community</a></li>
+                        <li><a href=\"#\">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class=\"footer-column\">
+                    <h3>Connect</h3>
+                    <div class=\"social-icons\">
+                        <a href=\"#\" aria-label=\"Twitter\">\ud835\udd4f</a>
+                        <a href=\"#\" aria-label=\"LinkedIn\">in</a>
+                        <a href=\"#\" aria-label=\"GitHub\">\u2328</a>
+                        <a href=\"#\" aria-label=\"Discord\">\ud83c\udfae</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class=\"copyright\">
+                <p>&copy; 2023 Tanka AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('nav') && !event.target.closest('.mobile-menu-btn')) {
+                    navMenu.classList.remove('show');
+                }
+            });
+            
+            // Add scroll animation
+            const cards = document.querySelectorAll('.card, .use-case-card');
+            
+            function checkScroll() {
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (cardTop < windowHeight * 0.9) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Initialize card styles
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            // Check on load and scroll
+            window.addEventListener('load', checkScroll);
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
